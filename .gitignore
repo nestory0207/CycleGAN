@@ -1,0 +1,9 @@
+# directory
+logs/
+samples/
+test/
+__pycache__/
+
+# file
+*.ipynb
+*.out
