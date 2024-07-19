@@ -81,10 +81,15 @@ class DicomData:
         self.random_seed = tf.compat.v1.set_random_seed(seed=1004)
         
     def get_img_paths(self):
-        test_subjects = ['S0011', 'S0013', 'S0018', 'S0057', 'S0065', 'S0067', 'S0068', 'S0072', 'S0080', 'S0088', 'S0098', 'S0112', 'S0119', 'S0121', 'S0130', 'S0132', 'S0137', 'S0143', 'S0171', 'S0196', 'S0216', 'S0217', 'S0220', 'S0244', 'S0260', 'S0272', 'S0278', 'S0281', 'S0292', 'S0309', 'S0316', 'S0323', 'S0327', 'S0346', 'S0348', 'S0355', 'S0359', 'S0360', 'S0380', 'S0385']
+        test_subjects = []
+        # test_subjects = ['S0011', 'S0013', 'S0018', 'S0057', 'S0065', 'S0067', 'S0068', 'S0072', 'S0080', 'S0088', 'S0098', 'S0112', 'S0119', 'S0121', 'S0130', 'S0132', 'S0137', 'S0143', 'S0171', 'S0196', 'S0216', 'S0217', 'S0220', 'S0244', 'S0260', 'S0272', 'S0278', 'S0281', 'S0292', 'S0309', 'S0316', 'S0323', 'S0327', 'S0346', 'S0348', 'S0355', 'S0359', 'S0360', 'S0380', 'S0385']
         # test_subjects = ['S0011']
         self.subject_paths = sorted(glob(os.path.join(self.dataset_path, "S*")))
-        self.subject_paths = sorted([i for i in self.subject_paths if os.path.basename(i) in test_subjects])
+        
+        if len(test_subjects) != 0:
+            self.subject_paths = sorted([i for i in self.subject_paths if os.path.basename(i) in test_subjects])
+        else:
+            self.subject_paths = sorted([i for i in self.subject_paths])
         
         img_paths = []
         for i in self.subject_paths:
